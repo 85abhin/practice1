@@ -1,0 +1,71 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block banner %}                 
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{% static 'myapp/images/banner/b1.jpg' %}" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'myapp/images/banner/b2.jpg' %}" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'myapp/images/banner/b3.jpg' %}" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                
+{% endblock banner %}
+                 
+<!-- below is the live sale div which contains the offers -->
+{% block livesale %}
+<div class="offers" style="background-color: orangered; height: 200px; color: white; text-align: center; display: flex; align-items: center; justify-content: center;">
+    <div>
+      <h1>Up to 50% offers</h1>
+      <h6>Terms and Conditions are applied *</h6>
+    </div>
+</div>
+{% endblock livesale %}
+
+<!-- ---------------------------------------------------- -->
+{% block content %}
+<!-- Bottom wear carousel here  -->
+<div class="m-3">
+  <h2 style="letter-spacing: 1px; color: chocolate; ">Myshopping Bottom Wear</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel" id="slider1">
+   {% for b in BottomsWear %}
+     <a href="{% url 'product-detail' b.id %}" class="btn">
+      <div class="item"><img src="{{b.product_image.url}}" alt="prodimg" height="300px">
+        <br>
+        <span class="fw-bold">{{b.title}}</span>
+        <br>
+        <span class="fs-5">Rs. {{b.discounted_price}}</span>
+      </div>
+    </a>
+   {% endfor %}
+  </div>
+ </div>
+
+ <!-- slider 2 that contain only T-Shirts  -->
+ <div class="m-3">
+  <h2 style="letter-spacing: 1px; color: chocolate; ">Myshopping TopsWear</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel" id="slider1">
+   {% for t in TopsWear %}
+     <a href="{% url 'product-detail' t.id %}" class="btn">
+      <div class="item"><img src="{{t.product_image.url}}" alt="prodimg" height="300px">
+        <br>
+        <span class="fw-bold">{{t.title}}</span>
+        <br>
+        <span class="fs-5">Rs. {{t.discounted_price}}</span>
+      </div>
+    </a>
+   {% endfor %}
+  </div>
+ </div>
+{% endblock content %}
+
+
+
